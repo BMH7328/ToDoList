@@ -37,6 +37,6 @@
         ]);
 
         // redirect user back to index.php
-        header("Location: todolist.php");
+        header("Location: logintodo.php");
         exit;
     }

@@ -1,4 +1,7 @@
 <?php
+
+    session_start();
+
      $tasks = [];
 
      $database = new PDO(
@@ -41,6 +44,16 @@ $tasks = $query->fetchAll();
     >
       <div class="card-body">
         <h3 class="card-title mb-3">My Todo List</h3>
+        <?php if ( isset( $_SESSION["user"] ) ) { ?>
+                    
+                <?php } else { ?>
+                    <a href="logintodo.php">Login</a>
+                    <a href="signuptodo.php">Sign Up</a>
+                <?php } ?>
+            </div>
+            <!-- task 2: when form is submitted, student should be added to $_SESSION['students'] -->
+            <?php if ( isset( $_SESSION["user"] ) ) { ?>
+
             <ul class="list-group">
     <?php foreach ($tasks as $task) { ?>
         <li
@@ -109,7 +122,11 @@ $tasks = $query->fetchAll();
         </form>
         </div>
       </div>
-    </div>
+        </div>
+  <div class="d-flex justify-content-center">
+        <a href="logouttodo.php">LogOut</a>
+          </div>
+          <?php } ?>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
