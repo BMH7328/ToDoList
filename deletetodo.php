@@ -23,7 +23,7 @@ if ( empty( $task_id ) ) {
     ]);
 
     // redirect to the index.php
-    header("Location: todolist.php");
+    header("Location: /");
         exit;
 
 }

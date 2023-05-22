@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $database = new PDO(
     "mysql:host=devkinsta_db;dbname=ToDoList", 
          'root', // username
@@ -9,7 +11,7 @@ $database = new PDO(
 $task_name = $_POST['task_name'];
 
 if (empty($task_name)){
-    echo "Missing Task";
+    $error = "Missing List, Pls Type Anything";
 } else {
     
     $sql = 'INSERT INTO todo (`task`, `completed`) VALUES(:task, :completed)';
@@ -21,7 +23,15 @@ if (empty($task_name)){
         'completed' => 0
     ]);
 
-header("Location: todolist.php");
+header("Location: /");
 exit;
+}
+ // do error checking
+ if ( isset( $error ) ) {
+    // store the error message in session
+    $_SESSION['error'] = $error;
+    // redirect the user back to login.php
+    header("Location: /");
+    exit;
 }
 ?>

@@ -29,7 +29,7 @@
         ]);        
         
         // 3. redirect the user back to index.php
-        header("Location: todolist.php");
+        header("Location: /");
         exit;
 
     }

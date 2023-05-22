@@ -1,7 +1,5 @@
 <?php
-
-    session_start();
-
+     $completed = [];
      $tasks = [];
 
      $database = new PDO(
@@ -47,8 +45,8 @@ $tasks = $query->fetchAll();
         <?php if ( isset( $_SESSION["user"] ) ) { ?>
                     
                 <?php } else { ?>
-                    <a href="logintodo.php">Login</a>
-                    <a href="signuptodo.php">Sign Up</a>
+                    <a href="/login">Login</a>
+                    <a href="/signup">Sign Up</a>
                 <?php } ?>
             </div>
             <!-- task 2: when form is submitted, student should be added to $_SESSION['students'] -->
@@ -108,6 +106,16 @@ $tasks = $query->fetchAll();
           <?php } ?>
         </ul>
         <div class="mt-4">
+          <?php
+              if ( isset( $_SESSION['error'] ) ) :?>
+              <div class="alert alert-danger" role="alert">
+                <?php
+                  echo $_SESSION['error'];
+
+                  unset ($_SESSION['error']);
+                  ?>
+                  </div>
+          <?php endif;?>
             <form class="d-flex justify-content-between align-items-center"
             method="POST"
             action="addtodo.php"
@@ -124,7 +132,7 @@ $tasks = $query->fetchAll();
       </div>
         </div>
   <div class="d-flex justify-content-center">
-        <a href="logouttodo.php">LogOut</a>
+        <a href="/logout">LogOut</a>
           </div>
           <?php } ?>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
